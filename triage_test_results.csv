@@ -1,0 +1,306 @@
+user_id,clean_message,intent,confidence,risk_score,triage_category,recommendation,entities,timestamp
+test_user_1,I feel great lately. Been sleeping well and doing yoga.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T14:07:59.957320
+test_user_2,I'm a bit stressed but managing fine.,anger,0.645,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-08T14:08:00.051900
+test_user_3,"I feel anxious every night, can't focus on studying.",fear,0.998,80,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'every night')]",2025-11-08T14:08:00.108420
+test_user_4,I’m so tired all the time. Nothing feels enjoyable anymore.,joy,0.999,20,MILD,Provide self-help resources; optional counseling.,[],2025-11-08T14:08:00.155458
+test_user_5,"I can’t stop worrying, it’s ruining my sleep.",sadness,0.973,60,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-08T14:08:00.201967
+test_user_6,I’ve been thinking about killing myself.,anger,0.693,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-08T14:08:00.253047
+test_user_7,I want to die but I don’t have a plan.,anger,0.507,80,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T14:08:00.304567
+test_user_8,Everyone would be better off without me.,joy,0.958,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T14:08:00.350627
+test_user_9,"I cut myself last week, it helped me cope.",joy,0.863,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'last week')]",2025-11-08T14:08:00.393160
+test_user_10,Sometimes I wish I could just disappear forever.,sadness,0.972,60,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-08T14:08:00.436271
+test_user_1,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:29.423571
+test_user_2,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-08T15:57:29.463037
+test_user_3,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:29.518081
+test_user_4,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:29.571147
+test_user_5,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:29.620663
+test_user_6,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:29.667718
+test_user_7,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:29.711734
+test_user_8,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:29.747786
+test_user_9,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-08T15:57:29.780296
+test_user_10,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:29.814824
+test_user_11,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-08T15:57:29.847414
+test_user_12,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:29.886949
+test_user_13,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:29.920479
+test_user_14,I've been a bit tired recently.,sadness,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:29.957998
+test_user_15,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-08T15:57:29.992506
+test_user_16,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.028036
+test_user_17,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.062557
+test_user_18,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.095067
+test_user_19,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.131625
+test_user_20,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.168656
+test_user_21,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:30.206651
+test_user_22,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.239681
+test_user_23,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.273201
+test_user_24,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.307203
+test_user_25,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.341250
+test_user_26,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.375780
+test_user_27,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.435652
+test_user_28,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.470753
+test_user_29,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-08T15:57:30.511756
+test_user_30,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-08T15:57:30.544804
+test_user_31,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.579336
+test_user_32,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.614364
+test_user_33,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.647412
+test_user_34,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-08T15:57:30.682944
+test_user_35,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.718452
+test_user_36,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:30.751001
+test_user_37,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-08T15:57:30.785547
+test_user_38,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.818068
+test_user_39,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-08T15:57:30.849594
+test_user_40,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-08T15:57:30.880127
+test_user_41,I've been a bit tired recently.,sadness,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:30.916649
+test_user_42,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-08T15:57:30.950192
+test_user_43,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:30.988702
+test_user_44,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.024253
+test_user_45,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-08T15:57:31.059051
+test_user_46,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:31.090561
+test_user_47,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:31.124094
+test_user_48,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.159643
+test_user_49,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.193154
+test_user_50,I've been a bit tired recently.,sadness,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:31.226690
+test_user_51,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.261205
+test_user_52,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.292720
+test_user_53,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.326257
+test_user_54,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:31.359851
+test_user_55,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.392359
+test_user_56,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-08T15:57:31.426888
+test_user_57,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.460406
+test_user_58,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.502927
+test_user_59,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.534464
+test_user_60,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-08T15:57:31.565496
+test_user_61,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.598498
+test_user_62,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.634082
+test_user_63,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:31.668118
+test_user_64,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:31.701114
+test_user_65,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-08T15:57:31.735657
+test_user_66,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:31.767686
+test_user_67,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-08T15:57:31.799682
+test_user_68,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.837239
+test_user_69,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:31.869350
+test_user_70,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.901350
+test_user_71,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:31.935910
+test_user_72,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:31.969933
+test_user_73,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.011932
+test_user_74,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.047972
+test_user_75,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-08T15:57:32.083493
+test_user_76,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-08T15:57:32.114484
+test_user_77,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.151542
+test_user_78,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-08T15:57:32.185086
+test_user_79,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-08T15:57:32.217595
+test_user_80,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.255119
+test_user_81,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:32.288671
+test_user_82,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-08T15:57:32.322190
+test_user_83,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-08T15:57:32.355710
+test_user_84,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-08T15:57:32.387220
+test_user_85,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.421741
+test_user_86,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:32.455136
+test_user_87,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-08T15:57:32.497661
+test_user_88,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.532212
+test_user_89,I've been a bit tired recently.,sadness,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:32.570248
+test_user_90,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.603247
+test_user_91,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.637793
+test_user_92,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.669858
+test_user_93,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.702854
+test_user_94,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.737466
+test_user_95,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.773503
+test_user_96,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.808505
+test_user_97,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:32.841065
+test_user_98,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-08T15:57:32.873585
+test_user_99,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-08T15:57:32.907587
+test_user_100,I've been a bit tired recently.,sadness,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-08T15:57:32.946690
+user_1762625025312,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: so tired ,fatigued i want to kill myself
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: can't sleep and can't study at all
+Q4: When you feel like this, who do you usually turn to for support? Answer: no i have none
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: gaming and junk food",sadness,0.998,100,CRISIS,Connect to crisis support immediately (988 / campus hotline).,"[('DATE', 'daily')]",2025-11-08T18:03:45.398540
+user_1762629335212,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: No, never
+Q2: How have you been feeling lately, emotionally or mentally? Answer: so tired ,fatigued i want to kill myself
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: can't sleep and can't study at all
+Q4: When you feel like this, who do you usually turn to for support? Answer: no i have none
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: gaming and junk food",sadness,0.999,100,CRISIS,Connect to crisis support immediately (988 / campus hotline).,"[('DATE', 'daily')]",2025-11-08T19:15:35.301446
+user_1762895801015,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: i feel depressed and not sleeping well
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: i can't focus on any of them
+Q4: When you feel like this, who do you usually turn to for support? Answer: no one
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: being away from everyone and not talking to anyone",sadness,0.999,80,URGENT,Schedule counselor within 48 hours.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-11T21:16:41.321423
+user_1762895931032,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: No, never
+Q2: How have you been feeling lately, emotionally or mentally? Answer: i am not well , i feel like there is no meaning in this life and i am thinking to end it all
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: i don't do anything useful with my life my parents are a hell to live with
+Q4: When you feel like this, who do you usually turn to for support? Answer: i don't have anyone but my cat
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: gaming, junkfood and drinking",joy,0.997,40,MODERATE,Schedule counselor within 1–2 weeks.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-11T21:18:51.284871
+user_1762896154128,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: i am not well , i feel like there is no meaning in this life and i am thinking to end it all
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: i don't do anything useful with my life my parents are a hell to live with
+Q4: When you feel like this, who do you usually turn to for support? Answer: i don't have anyone but my cat
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: gaming, junkfood and drinking",joy,0.997,40,MODERATE,Schedule counselor within 1–2 weeks.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-11T21:22:34.325753
+user_1762896211201,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: i want to kill myself
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: so bad
+Q4: When you feel like this, who do you usually turn to for support? Answer: no one
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: gaming and gambling",sadness,0.992,100,CRISIS,Connect to crisis support immediately (988 / campus hotline).,"[('DATE', 'daily')]",2025-11-11T21:23:31.333719
+test_user_1,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:42.918242
+test_user_2,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-16T11:36:42.951772
+test_user_3,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:42.982771
+test_user_4,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-16T11:36:43.024279
+test_user_5,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.053794
+test_user_6,I've been a bit tired recently.,sadness,0.997,75,CRISIS,Connect to crisis support immediately (988 / campus hotline).,[],2025-11-16T11:36:43.087794
+test_user_7,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-16T11:36:43.116304
+test_user_8,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.148838
+test_user_9,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.179845
+test_user_10,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:43.218343
+test_user_11,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.248883
+test_user_12,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:43.277883
+test_user_13,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.308408
+test_user_14,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-16T11:36:43.337412
+test_user_15,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.366919
+test_user_16,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-16T11:36:43.397449
+test_user_17,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.427450
+test_user_18,I've been a bit tired recently.,sadness,0.997,75,CRISIS,Connect to crisis support immediately (988 / campus hotline).,[],2025-11-16T11:36:43.454978
+test_user_19,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-16T11:36:43.482975
+test_user_20,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.512485
+test_user_21,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:43.540033
+test_user_22,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.569042
+test_user_23,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.597564
+test_user_24,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.626559
+test_user_25,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.657093
+test_user_26,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.688097
+test_user_27,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-16T11:36:43.716605
+test_user_28,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.767143
+test_user_29,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:43.797709
+test_user_30,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.827688
+test_user_31,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.857216
+test_user_32,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.889219
+test_user_33,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:43.967259
+test_user_34,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-16T11:36:44.074288
+test_user_35,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.110805
+test_user_36,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.142330
+test_user_37,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.171324
+test_user_38,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-16T11:36:44.200840
+test_user_39,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-16T11:36:44.228844
+test_user_40,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.258360
+test_user_41,Life is stable and peaceful.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.288362
+test_user_42,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.330871
+test_user_43,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.370381
+test_user_44,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.399905
+test_user_45,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.430905
+test_user_46,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:44.462484
+test_user_47,I've been a bit tired recently.,sadness,0.997,75,CRISIS,Connect to crisis support immediately (988 / campus hotline).,[],2025-11-16T11:36:44.500022
+test_user_48,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.542534
+test_user_49,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.580533
+test_user_50,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-16T11:36:44.616049
+test_user_51,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:44.652566
+test_user_52,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:44.694099
+test_user_53,Sometimes I lose focus easily.,fear,0.426,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:44.730100
+test_user_54,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.760632
+test_user_55,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-16T11:36:44.792145
+test_user_56,I've been a bit tired recently.,sadness,0.997,75,CRISIS,Connect to crisis support immediately (988 / campus hotline).,[],2025-11-16T11:36:44.825143
+test_user_57,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:44.858662
+test_user_58,My mental health feels strong.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.896195
+test_user_59,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:44.930190
+test_user_60,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-16T11:36:44.965766
+test_user_61,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.010307
+test_user_62,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.046851
+test_user_63,Feeling good about life lately.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.080851
+test_user_64,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-16T11:36:45.112401
+test_user_65,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.141904
+test_user_66,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:45.171903
+test_user_67,"Everything's balanced, sleeping well.",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.205427
+test_user_68,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.239426
+test_user_69,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.277940
+test_user_70,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.313456
+test_user_71,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-16T11:36:45.348980
+test_user_72,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.382983
+test_user_73,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.418500
+test_user_74,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.468038
+test_user_75,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-16T11:36:45.502596
+test_user_76,I've been a bit tired recently.,sadness,0.997,75,CRISIS,Connect to crisis support immediately (988 / campus hotline).,[],2025-11-16T11:36:45.540096
+test_user_77,Minor tension lately.,anger,0.862,50,MODERATE,Schedule counselor within 1–2 weeks.,[],2025-11-16T11:36:45.571102
+test_user_78,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:45.605628
+test_user_79,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:45.641164
+test_user_80,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:45.684171
+test_user_81,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-16T11:36:45.721684
+test_user_82,I get anxious sometimes before exams.,fear,0.997,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:45.764233
+test_user_83,I'm doing fine.,joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.804767
+test_user_84,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-16T11:36:45.839762
+test_user_85,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.876274
+test_user_86,I'm happy and motivated.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.910807
+test_user_87,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:45.946351
+test_user_88,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-16T11:36:45.980330
+test_user_89,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-16T11:36:46.015878
+test_user_90,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:46.053403
+test_user_91,Enjoying time with friends and family.,joy,0.959,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:46.089401
+test_user_92,Some stress but manageable.,joy,0.996,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:46.124911
+test_user_93,I feel amazing today!,surprise,0.694,30,MILD,Provide self-help resources; optional counseling.,"[('DATE', 'today')]",2025-11-16T11:36:46.159440
+test_user_94,Mild anxiety at night.,fear,0.98,70,URGENT,Schedule counselor within 48 hours.,"[('TIME', 'night')]",2025-11-16T11:36:46.190953
+test_user_95,Feeling off but still managing.,joy,0.995,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:46.221953
+test_user_96,"Feeling a bit down, not serious.",joy,0.968,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:46.260467
+test_user_97,I've been productive and calm.,joy,0.999,10,WELLNESS,Offer preventive mental health and wellness programs.,[],2025-11-16T11:36:46.299501
+test_user_98,Doing yoga and meditation daily.,joy,0.648,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-16T11:36:46.334507
+test_user_99,Worrying more than usual.,fear,0.971,70,URGENT,Schedule counselor within 48 hours.,[],2025-11-16T11:36:46.370019
+test_user_100,Slight trouble sleeping this week.,fear,0.942,70,URGENT,Schedule counselor within 48 hours.,"[('DATE', 'this week')]",2025-11-16T11:36:46.404538
+user_1763293515300,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: i feel that nothing matters
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: exhausted and can't finish my studies
+Q4: When you feel like this, who do you usually turn to for support? Answer: only my cat
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: porn, gaming and drinking",sadness,0.999,100,CRISIS,Connect to crisis support immediately (988 / campus hotline).,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-16T11:45:15.393945
+user_1763294145713,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: devastated
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: i cant study well
+Q4: When you feel like this, who do you usually turn to for support? Answer: my husband
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: no",sadness,0.999,60,MODERATE,Schedule counselor within 1–2 weeks.,"[('DATE', 'daily')]",2025-11-16T11:55:45.816582
+user_1763294293950,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: devastated
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: i cant study well
+Q4: When you feel like this, who do you usually turn to for support? Answer: my husband
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: no",sadness,0.999,60,MODERATE,Schedule counselor within 1–2 weeks.,"[('DATE', 'daily')]",2025-11-16T11:58:14.039994
+user_1763294345759,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: fine
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: i am good at my studies
+Q4: When you feel like this, who do you usually turn to for support? Answer: my wife
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: praying",joy,0.892,35,MILD,Provide self-help resources; optional counseling.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-16T11:59:05.839540
+user_1763295229754,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: good
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: doing well
+Q4: When you feel like this, who do you usually turn to for support? Answer: yes my god
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: praying",joy,0.86,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-16T12:13:49.868135
+user_1763295348201,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: good
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: very well
+Q4: When you feel like this, who do you usually turn to for support? Answer: god
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: praying",joy,0.691,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-16T12:15:48.277976
+user_1763295612396,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: good
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: i am doing well in both
+Q4: When you feel like this, who do you usually turn to for support? Answer: god
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: pray",joy,0.964,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-16T12:20:12.476878
+user_1763296020113,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: good
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: doing great
+Q4: When you feel like this, who do you usually turn to for support? Answer: god
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: praying",joy,0.893,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-16T12:27:00.197248
+user_1763296214898,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: good
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: well
+Q4: When you feel like this, who do you usually turn to for support? Answer: god
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: praying",joy,0.691,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-16T12:30:14.981904
+user_1763296503635,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: good
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: well
+Q4: When you feel like this, who do you usually turn to for support? Answer: god
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: praying",joy,0.691,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-16T12:35:03.725012
+user_1763307361362,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: very good awesome
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: fantastic
+Q4: When you feel like this, who do you usually turn to for support? Answer: god
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: praying",joy,0.998,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('DATE', 'daily')]",2025-11-16T15:36:01.481437
+user_1763308269725,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: good
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: fantastic
+Q4: When you feel like this, who do you usually turn to for support? Answer: god and wife
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: praying",joy,0.99,10,WELLNESS,Offer preventive mental health and wellness programs.,"[('PRODUCT', 'Q3'), ('DATE', 'daily'), ('PERSON', 'god')]",2025-11-16T15:51:09.808225
+user_1763313942712,"Q1: Have you had any thoughts about hurting yourself or anyone else? Answer: Yes, but only fleeting thoughts
+Q2: How have you been feeling lately, emotionally or mentally? Answer: amazing
+Q3: How has that been affecting your daily life — like sleep, studying, or work? Answer: so bad i mean things don't go well
+Q4: When you feel like this, who do you usually turn to for support? Answer: no one
+Q5: What helps you cope when things get difficult, and has that been helping recently? Answer: porn",surprise,0.911,40,MODERATE,Schedule counselor within 1–2 weeks.,"[('PRODUCT', 'Q3'), ('DATE', 'daily')]",2025-11-16T17:25:42.804070

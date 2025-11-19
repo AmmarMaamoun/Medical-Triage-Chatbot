@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Triage Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 flex justify-center items-center min-h-screen">
+  <div id="chat" class="w-full max-w-3xl bg-white rounded-2xl shadow-lg overflow-hidden">
+    
+    <!-- Header -->
+    <div class="p-4 border-b flex justify-between items-center">
+      <div>
+        <h2 class="text-xl font-bold">🧠 Mental Health Triage Assistant</h2>
+        <p class="text-sm text-gray-500">Confidential • 5 quick questions</p>
+      </div>
+      <a href="/dashboard" target="_blank" class="text-sm text-indigo-600 hover:underline">Dashboard</a>
+    </div>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="p-4 h-[60vh] overflow-auto space-y-4 text-sm"></div>
+
+    <!-- Input -->
+    <div id="input-area" class="p-4 border-t flex gap-2">
+      <input id="userInput" type="text" placeholder="Type your answer..." class="flex-1 border px-3 py-2 rounded" />
+      <button id="sendBtn" class="bg-indigo-600 text-white px-4 py-2 rounded">Send</button>
+    </div>
+  </div>
+
+
+<script>
+/* -------------------------------------------------
+   Core Setup
+---------------------------------------------------*/
+const QUESTIONS = [
+  "Q1: Have you had any thoughts about hurting yourself or anyone else?",
+  "Q2: How have you been feeling lately, emotionally or mentally?",
+  "Q3: How has that been affecting your daily life — like sleep, studying, or work?",
+  "Q4: When you feel like this, who do you usually turn to for support?",
+  "Q5: What helps you cope when things get difficult, and has that been helping recently?"
+];
+
+const Q1_OPTIONS = [
+  "No, never",
+  "Yes, but only fleeting thoughts",
+  "Yes, and I’ve thought about how I might do it",
+  "Yes, and I’ve tried or taken steps recently"
+];
+
+let idx = -1;
+let answers = {};
+
+const chat = document.getElementById("chat-window");
+const input = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+
+
+/* -------------------------------------------------
+   Chat helper to render messages
+---------------------------------------------------*/
+function addMessage(text, sender = "bot") {
+  const msg = document.createElement("div");
+  msg.className =
+    sender === "bot"
+      ? "bg-gray-100 p-3 rounded-lg max-w-[80%]"
+      : "bg-indigo-600 text-white p-3 rounded-lg self-end max-w-[80%] ml-auto";
+
+  msg.innerHTML = text;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+
+/* -------------------------------------------------
+   Call backend empathy endpoint
+---------------------------------------------------*/
+async function callEmpathy(text) {
+  try {
+    const res = await fetch("/empathy", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text })
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (err) {
+    return null;
+  }
+}
+
+
+/* -------------------------------------------------
+   Q1 (MCQ) special handler
+---------------------------------------------------*/
+async function handleQ1Response(selected) {
+  addMessage(selected, "user");
+  answers["q1"] = selected;
+
+  // If danger → stop immediately
+  if (
+    selected.includes("thought about how I might") ||
+    selected.includes("taken steps")
+  ) {
+    addMessage("⚠️ Please call 19898 immediately.", "bot");
+
+    const em = await callEmpathy(selected);
+    if (em && em.empathy) addMessage(em.empathy, "bot");
+    return;
+  }
+
+  // Otherwise send empathy
+  const em = await callEmpathy(selected);
+  if (em && em.empathy) addMessage(em.empathy, "bot");
+
+  setTimeout(nextQuestion, 600);
+}
+
+
+/* -------------------------------------------------
+   Normal input handler (Q2–Q5)
+---------------------------------------------------*/
+sendBtn.onclick = async () => {
+  const val = input.value.trim();
+  if (!val) return;
+
+  addMessage(val, "user");
+  answers["q" + (idx + 1)] = val;
+  input.value = "";
+
+  // Empathy
+  const em = await callEmpathy(val);
+  if (em && em.empathy) addMessage(em.empathy, "bot");
+
+  setTimeout(nextQuestion, 600);
+};
+
+
+/* -------------------------------------------------
+   Render Q1 MCQ options
+---------------------------------------------------*/
+function renderQ1Options() {
+  const optionsDiv = document.createElement("div");
+  optionsDiv.className = "flex flex-col gap-2 mt-2";
+
+  Q1_OPTIONS.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.textContent = opt;
+    btn.className = "border rounded-lg px-3 py-2 text-left hover:bg-indigo-50";
+    btn.onclick = () => handleQ1Response(opt);
+    optionsDiv.appendChild(btn);
+  });
+
+  chat.appendChild(optionsDiv);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+
+/* -------------------------------------------------
+   Ask next question
+---------------------------------------------------*/
+function nextQuestion() {
+  idx++;
+  if (idx < QUESTIONS.length) {
+    if (idx === 0) {
+      addMessage(QUESTIONS[idx]);
+      renderQ1Options();
+    } else {
+      addMessage(QUESTIONS[idx]);
+    }
+  } else {
+    sendSummary();
+  }
+}
+
+
+/* -------------------------------------------------
+   Final summary sent to backend
+---------------------------------------------------*/
+async function sendSummary() {
+  addMessage("Analyzing your responses...");
+
+  let summary = "";
+  for (let i = 0; i < QUESTIONS.length; i++) {
+    summary += `${QUESTIONS[i]} Answer: ${answers["q" + (i + 1)]}\n`;
+  }
+
+  try {
+    const res = await fetch("/message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: "user_" + Date.now(),
+        message: summary
+      })
+    });
+
+    const data = await res.json();
+
+    addMessage(`📊 Result: ${data.triage_category} (Score: ${data.risk_score})`);
+    addMessage(`💡 Recommendation: ${data.recommendation}`);
+    addMessage(
+      "📈 <a href='/results' class='text-indigo-600 underline' target='_blank'>Show My Emotional Analysis</a>"
+    );
+    addMessage("✅ Your results have been saved.");
+  } catch (err) {
+    addMessage("⚠️ Something went wrong. Try again.");
+  }
+}
+
+
+/* -------------------------------------------------
+   Start conversation
+---------------------------------------------------*/
+addMessage("👋 Hi! I’m your triage assistant. Click “Send” or choose an option to begin.");
+nextQuestion();
+
+</script>
+
+</body>
+</html>
