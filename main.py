@@ -357,7 +357,7 @@ def dashboard():
 # --- Chat UI Route (SAFE VERSION) ---
 @app.get("/results", response_class=HTMLResponse)
 def results_page():
-    print("🔥 /results endpoint called!")
+    print(" /results endpoint called!")
 
     csv_filename = "triage_test_results.csv"
     if not os.path.exists(csv_filename):
@@ -374,7 +374,7 @@ def results_page():
     last_row = df.iloc[-1]
     text = last_row["clean_message"]
 
-    print("🤖 Running classifier...")
+    print("Running classifier...")
     probs = classifier(text, return_all_scores=True)[0]
 
     # Convert classifier output to dictionary
@@ -449,7 +449,7 @@ def results_page():
     <html>
     <body style="font-family: Arial; padding: 30px;">
 
-        <h2>📊 Your Emotional Analysis</h2>
+        <h2> Your Emotional Analysis</h2>
 
         {radar_html}
 
@@ -471,12 +471,12 @@ def chat_ui():
     # Path to chat.html in same folder as INPUT.py
     file_path = os.path.join(os.path.dirname(__file__), "chat.html")
 
-    print("🔍 Checking for chat.html at:", file_path)
+    print(" Checking for chat.html at:", file_path)
 
     if not os.path.exists(file_path):
         return HTMLResponse(
             f"""
-            <h3>❌ chat.html NOT FOUND</h3>
+            <h3> chat.html NOT FOUND</h3>
             <p>Looked for file at:</p>
             <pre>{file_path}</pre>
             <p>Please place chat.html in the SAME FOLDER as INPUT.py</p>
