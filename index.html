@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mental Health Triage Chatbot</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ================= VISUAL STYLE ================= */
+    .glow { box-shadow: 0 0 18px rgba(99,102,241,0.6); }
+    .glass { background: rgba(255,255,255,.78); backdrop-filter: blur(14px); }
+    .fade-in { animation: fadeIn .35s ease; }
+    @keyframes fadeIn { from {opacity:0; transform:translateY(8px);} to {opacity:1;} }
+
+    /* 🌈 Animated Gradient */
+    .animated-gradient {
+      background: linear-gradient(120deg,#6366f1,#a855f7,#ec4899,#f97316);
+      background-size: 300% 300%;
+      animation: gradientFlow 18s ease infinite;
+    }
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Heat bar */
+    .severity-wrapper { width:100%; margin-top:6px; }
+    .severity-row { display:flex; width:100%; }
+    .severity-item { flex:1; text-align:center; }
+    .segment-bar { height:16px; }
+    .seg-0{background:#22c55e;}
+    .seg-1{background:#a3e635;}
+    .seg-2{background:#eab308;}
+    .seg-3{background:#fb923c;}
+    .seg-4{background:#f97316;}
+    .seg-5{background:#ef4444;}
+    .arrow { font-size:12px; margin-top:2px; }
+  </style>
+</head>
+
+<body class="min-h-screen animated-gradient text-gray-900">
+
+<!-- ================= STORY ================= -->
+<section class="min-h-screen flex justify-center pt-28 px-6">
+  <div class="max-w-4xl w-full bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl px-10 py-12">
+
+    <h1 class="text-4xl font-semibold tracking-tight mb-4">
+      Why this chatbot exists
+    </h1>
+    <div class="w-20 h-1 bg-indigo-600 rounded mb-8"></div>
+
+    <p class="mb-6 text-gray-700 leading-relaxed">
+      There are more people in need of mental health support than available therapy sessions.
+      Clinical resources are limited, and many individuals wait too long before receiving attention.
+    </p>
+
+    <p class="mb-6 text-gray-700 leading-relaxed">
+      This chatbot supports <strong>early mental health triage</strong> by asking five structured
+      questions and classifying responses into severity levels, allowing attention to be prioritized.
+    </p>
+
+    <p class="mb-6 text-gray-700 leading-relaxed">
+      The goal is not diagnosis and not treatment. The goal is
+      <strong>signal detection</strong> — identifying who may need immediate support,
+      who should be followed up, and who is currently stable.
+    </p>
+
+    <p class="mb-6 text-gray-700 leading-relaxed">
+      The design is informed by established clinical frameworks including
+      <strong>DSM-5</strong> and <strong>PHQ-7-style screening logic</strong>,
+      while remaining transparent and non-intrusive.
+    </p>
+
+    <div class="border-l-2 border-indigo-500 pl-5 text-sm text-gray-600">
+      This tool does not replace clinicians.
+      If you are in immediate danger, please contact local emergency services.
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHAT BUBBLE ================= -->
+<div id="chat-bubble"
+  class="fixed bottom-6 right-6 bg-indigo-600 glow text-white w-16 h-16 rounded-full flex items-center justify-center cursor-pointer text-2xl">
+  💬
+</div>
+
+<!-- ================= CHAT WINDOW ================= -->
+<div id="chat-window-container"
+  class="fixed bottom-24 right-6 w-96 glass shadow-2xl rounded-2xl border hidden">
+
+  <div class="bg-indigo-600 text-white p-4 rounded-t-2xl flex justify-between">
+    <h2 class="font-bold">🧠 Triage Assistant</h2>
+    <button id="closeChat">✕</button>
+  </div>
+
+  <div id="chat-window" class="p-4 h-[450px] overflow-y-auto space-y-4 text-sm"></div>
+
+  <div class="p-3 border-t bg-white flex gap-2">
+    <input id="userInput" class="flex-1 border rounded-xl px-3 py-2" placeholder="Type your answer...">
+    <button id="sendBtn" class="bg-indigo-600 text-white px-4 py-2 rounded-xl">Send</button>
+  </div>
+</div>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+const chat = document.getElementById("chat-window");
+const bubble = document.getElementById("chat-bubble");
+const chatBox = document.getElementById("chat-window-container");
+const closeBtn = document.getElementById("closeChat");
+const sendBtn = document.getElementById("sendBtn");
+const input = document.getElementById("userInput");
+
+bubble.onclick = () => chatBox.classList.remove("hidden");
+closeBtn.onclick = () => chatBox.classList.add("hidden");
+
+function addMessage(html, sender="bot") {
+  const div = document.createElement("div");
+  div.className = sender === "bot"
+    ? "bg-white p-3 rounded-xl shadow fade-in"
+    : "bg-indigo-600 text-white p-3 rounded-xl ml-auto shadow fade-in";
+  div.innerHTML = html;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+/* ---------------- QUESTIONS ---------------- */
+const QUESTIONS = [
+  "Q1: Have you had any thoughts about hurting yourself or anyone else?",
+  "Q2: How have you been feeling emotionally or mentally recently?",
+  "Q3: How has this affected your daily life?",
+  "Q4: Who do you usually turn to when you struggle?",
+  "Q5: What coping methods have helped you recently?"
+];
+
+const Q1_OPTIONS = [
+  "No, never",
+  "Yes, but fleeting thoughts",
+  "Yes, and I’ve thought how I might do it",
+  "Yes, and I’ve taken steps recently"
+];
+
+let idx = 0;
+let answers = {};
+
+function askQuestion() {
+  addMessage(QUESTIONS[idx]);
+
+  if (idx === 0) {
+    Q1_OPTIONS.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "block w-full text-left border p-2 rounded mt-2 hover:bg-indigo-50";
+      btn.textContent = opt;
+      btn.onclick = () => {
+        addMessage(opt,"user");
+        answers.q1 = opt;
+
+        if (opt.includes("thought how") || opt.includes("taken steps")) {
+          addMessage(
+            "🚨 <strong>CRISIS detected.</strong><br><br>" +
+            "Please call <strong>911</strong> or your local emergency number immediately.",
+            "bot"
+          );
+          input.disabled = true;
+          sendBtn.disabled = true;
+          return;
+        }
+
+        idx++;
+        askQuestion();
+      };
+      chat.appendChild(btn);
+    });
+    input.disabled = true;
+  } else {
+    input.disabled = false;
+  }
+}
+
+sendBtn.onclick = () => {
+  const val = input.value.trim();
+  if (!val) return;
+  addMessage(val,"user");
+  answers["q"+(idx+1)] = val;
+  input.value = "";
+  idx++;
+  if (idx < QUESTIONS.length) askQuestion();
+  else submit();
+};
+
+async function submit() {
+  const res = await fetch("/message",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({
+      user_id:"web",
+      message:Object.values(answers).join("\n")
+    })
+  });
+
+  const data = await res.json();
+  addMessage(`📊 <strong>Severity:</strong> ${data.triage_category}`);
+  renderHeatBar(data.risk_score);
+  addMessage(`💡 ${data.recommendation}`);
+}
+
+function renderHeatBar(score) {
+  const labels = ["Happy","Fine","Not Great","Down","Depressed","Crisis"];
+  let pct = Math.round(((score - 20) / 60) * 100);
+  pct = Math.max(0, Math.min(100, pct));
+  let i = Math.min(5, Math.floor(pct / 17));
+
+  let html = `
+    <div>
+      <div class="text-xs font-semibold mb-1">Mood & Risk Level</div>
+      <div class="severity-wrapper"><div class="severity-row">
+  `;
+  labels.forEach((l,idx)=>{
+    html += `
+      <div class="severity-item">
+        <div class="segment-bar seg-${idx}"></div>
+        <div class="arrow">${idx===i?"▲":""}</div>
+        <div class="text-xs">${l}</div>
+      </div>`;
+  });
+  html += `</div></div></div>`;
+  addMessage(html,"bot");
+}
+
+addMessage("👋 Hello. When you're ready, we can begin.");
+askQuestion();
+</script>
+
+</body>
+</html>
