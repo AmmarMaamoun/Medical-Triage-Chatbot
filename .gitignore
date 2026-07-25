@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Environment
+.env
+
+# Generated test/session data — do not commit real user responses
+triage_test_results.csv
+
+# OS
+.DS_Store
+Thumbs.db
