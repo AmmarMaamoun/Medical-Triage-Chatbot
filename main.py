@@ -92,6 +92,7 @@ MILD_NEGATIVE = [
 # --------------------------
 RISK_MAP = {
     "joy": 10,
+    "love": 10,
     "neutral": 20,
     "surprise": 30,
     "sadness": 60,
@@ -166,21 +167,29 @@ def extract_entities(text: str):
 def calculate_risk(emotions, text: str):
     text_lower = text.lower()
 
-    weighted = 0
-    for e in emotions:
-        base = RISK_MAP.get(e["label"].lower(), 40)
-        weighted += base * e["score"]
+    # Probability-weighted average of per-emotion risk. The classifier returns
+    # every label with scores summing to ~1, so divide by the total score
+    # (not the label count, which shrank the emotion signal ~6x).
+    total = sum(e["score"] for e in emotions)
+    weighted = sum(RISK_MAP.get(e["label"].lower(), 40) * e["score"] for e in emotions)
+    score = weighted / total if total else 0
 
-    score = weighted / len(emotions)
+    def hits(keywords):
+        return sum(k.lower() in text_lower for k in keywords)
 
-    score += 25 * sum(k in text_lower for k in STRONG_CRISIS)
-    score += 15 * sum(k in text_lower for k in MEDIUM_CRISIS)
-    score += 10 * sum(k in text_lower for k in MILD_NEGATIVE)
+    score += 25 * hits(STRONG_CRISIS)
+    score += 15 * hits(MEDIUM_CRISIS)
+    score += 10 * hits(MILD_NEGATIVE)
 
-    if any(k in text_lower for k in STRONG_CRISIS):
+    if hits(STRONG_CRISIS):
         score = max(score, 75)
+    elif not hits(MEDIUM_CRISIS):
+        # Emotion and mild keywords alone can reach URGENT, never CRISIS:
+        # CRISIS needs an explicit crisis phrase (or the Q1 screen).
+        score = min(score, 74)
 
-    return max(20, min(score, 80))
+    # 0-80 keeps WELLNESS (<20) reachable; 80 is the top of the UI heat bar.
+    return max(0, min(score, 80))
 
 
 # --------------------------

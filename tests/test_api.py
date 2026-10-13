@@ -21,7 +21,7 @@ def test_message_returns_triage_result(client, emotions):
 
     assert body["user_id"] == "u1"
     assert body["clean_message"] == "I went out today"
-    assert body["triage_category"] == "MILD"
+    assert body["triage_category"] == "WELLNESS"
     assert body["entities"] == [["DATE", "today"]]
     assert "Tips to get better" in body["recommendation"]
     assert body["session_id"]
