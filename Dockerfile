@@ -23,6 +23,6 @@ RUN pip install --no-cache-dir \
 # ---- App code ----
 COPY . .
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-w", "1", "-b", "0.0.0.0:8080", "main:app"]

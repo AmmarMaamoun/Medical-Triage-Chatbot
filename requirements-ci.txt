@@ -1,0 +1,12 @@
+# Lightweight dependencies for CI: the app's web/data stack plus test tooling.
+# torch, transformers and spaCy are deliberately left out — the tests stub
+# them (see tests/conftest.py) so CI never downloads multi-GB models.
+fastapi==0.110.0
+uvicorn==0.29.0
+pandas==2.0.3
+numpy==1.26.4
+python-multipart==0.0.9
+
+pytest==8.3.3
+httpx==0.27.2
+ruff==0.6.9

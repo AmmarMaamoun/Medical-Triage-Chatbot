@@ -1,0 +1,9 @@
+.git
+.github
+tests
+__pycache__
+*.pyc
+.env
+triage_test_results.csv
+requirements-ci.txt
+ruff.toml

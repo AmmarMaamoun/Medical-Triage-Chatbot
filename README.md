@@ -1,5 +1,7 @@
 # Triage Chatbot
 
+[![CI/CD](https://github.com/Ammar-Maamoun/Triage_chatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/Ammar-Maamoun/Triage_chatbot/actions/workflows/ci.yml)
+
 **A mental health early-triage chatbot that classifies conversational risk severity in real time, using emotion detection, entity extraction, and a clinically-informed scoring engine.**
 
 ---
@@ -92,6 +94,23 @@ gcloud run deploy triage-chatbot \
   --image europe-west1-docker.pkg.dev/YOUR_PROJECT_ID/triage-repo/triage-chatbot:latest \
   --platform managed --region europe-west1 \
   --allow-unauthenticated --memory=4Gi --timeout=15m
+```
+
+## CI/CD
+
+GitHub Actions ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs on every push and pull request:
+
+1. **Lint & test** — `ruff check .` and `pytest` on Python 3.10 with pip caching. The suite (`tests/`) covers the risk-category thresholds, the `STRONG_CRISIS` keyword override that forces CRISIS regardless of the emotion model, the locked-Q1 crisis branch, and the `/` and `/message` endpoints. spaCy and the transformers pipeline are stubbed in `tests/conftest.py`, so CI never installs torch or downloads models.
+2. **Deploy** (pushes to `main` only, after tests pass) — builds the Docker image, pushes it to Artifact Registry (`europe-west1-docker.pkg.dev/<project>/triage-repo/triage-chatbot`, tagged with the commit SHA and `latest`) and deploys it to Cloud Run with the flags below.
+
+The deploy job only runs when GCP credentials are configured as repository secrets; without them it is skipped and the workflow still passes. To enable it, add `GCP_PROJECT_ID` plus either `GCP_SA_KEY` (service-account JSON key) or `GCP_WIF_PROVIDER` and `GCP_WIF_SERVICE_ACCOUNT` (Workload Identity Federation). The service account needs Artifact Registry Writer, Cloud Run Admin and Service Account User.
+
+Run the same checks locally:
+
+```bash
+pip install -r requirements-ci.txt
+ruff check .
+pytest
 ```
 
 ## Why this project stands out
