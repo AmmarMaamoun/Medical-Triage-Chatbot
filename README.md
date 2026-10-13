@@ -1,6 +1,6 @@
 # Triage Chatbot
 
-[![CI/CD](https://github.com/AmmarMaamoun/Triage_chatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/AmmarMaamoun/Triage_chatbot/actions/workflows/ci.yml)
+[![CI/CD](https://github.com/AmmarMaamoun/Medical-Triage-Chatbot/actions/workflows/ci.yml/badge.svg)](https://github.com/AmmarMaamoun/Medical-Triage-Chatbot/actions/workflows/ci.yml)
 
 **A mental health early-triage chatbot that classifies conversational risk severity in real time, using emotion detection, entity extraction, and a clinically-informed scoring engine.**
 
