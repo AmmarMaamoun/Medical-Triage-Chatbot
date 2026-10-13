@@ -39,7 +39,7 @@ Chat Widget (index.html)
 
 | Layer | Responsibility |
 |---|---|
-| `main.py` | FastAPI app — model loading, `/message` scoring endpoint, `/result_chart`, `/index` |
+| `main.py` | FastAPI app — model loading, `/message` scoring endpoint (rate-limited), `/health`, chat UI at `/` |
 | `index.html` | Chat widget UI — five fixed questions, a locked crisis-branch MCQ, and a live severity heat bar |
 | `Dockerfile` | Container build, pinned to a specific `en_core_web_sm` wheel for reproducibility |
 
@@ -68,13 +68,15 @@ Chat Widget (index.html)
 | `fastapi`, `uvicorn` | API framework and server |
 | `transformers`, `torch` | Emotion classification pipeline |
 | `spacy` | Named-entity extraction |
-| `pandas`, `numpy` | Session data handling for `/result_chart` |
+| `pandas`, `numpy` | Data handling |
 | `python-multipart` | Form/request parsing |
 | `gunicorn` | Production process manager (used in the container) |
 
 ## Usage
 
-Open `/index` to load the chat widget. It asks five fixed questions; the first is a multiple-choice self-harm screen that can short-circuit straight to a crisis response. The remaining four are free text, sent together to `POST /message`, which returns a risk score, category, and recommendation. `GET /result_chart` returns the emotion breakdown behind the most recent entry, for the widget's severity heat bar.
+Open `/` to load the chat widget. It asks five fixed questions; the first is a multiple-choice self-harm screen that can short-circuit straight to a crisis response. The remaining four are free text, sent together to `POST /message`, which returns a risk score, category, per-request emotion breakdown and recommendation.
+
+**Public demo safety.** Messages are not stored unless `STORE_MESSAGES=true`; `/message` is rate-limited per IP (`RATE_LIMIT_PER_MIN`, default 10) and capped at 4,000 characters; crisis responses point to UAE emergency numbers (999 / 998) and the 800 HOPE support line.
 
 ## Running locally
 

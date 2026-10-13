@@ -62,7 +62,8 @@ def client(tmp_path, monkeypatch):
 
     import main
 
-    # /message appends to a CSV in the working directory; keep it out of the repo.
+    # /message can append to a CSV in the working directory; keep it out of the repo.
     monkeypatch.chdir(tmp_path)
+    main._hits.clear()  # fresh rate-limit window per test
     with TestClient(main.app) as c:
         yield c

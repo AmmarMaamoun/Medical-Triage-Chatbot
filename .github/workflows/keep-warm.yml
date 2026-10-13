@@ -1,0 +1,19 @@
+name: Keep demo warm
+
+# Pings the public demo during working hours (UAE/EU) so recruiters don't hit
+# a cold start while the AI models load. Free: uses GitHub Actions minutes,
+# not a paid Cloud Run min-instance. Set the repo variable DEMO_URL to enable.
+on:
+  schedule:
+    - cron: "*/10 5-17 * * 0-5"   # every 10 min, 05:00-17:59 UTC (09:00-21:59 Dubai), Sun-Fri
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    if: vars.DEMO_URL != ''
+    steps:
+      - name: Ping /health
+        run: curl -fsS --max-time 60 "${{ vars.DEMO_URL }}/health"

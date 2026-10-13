@@ -1,15 +1,24 @@
 import os
 import csv
+import time
 import uuid
+from collections import defaultdict, deque
 from datetime import datetime
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 import spacy
 from transformers import pipeline
-import pandas as pd
+
+
+# Public demo: don't persist what strangers type unless explicitly enabled.
+STORE_MESSAGES = os.getenv("STORE_MESSAGES", "false").lower() == "true"
+
+# Per-IP rate limit for /message (in-memory; fine for a small demo service)
+RATE_LIMIT = int(os.getenv("RATE_LIMIT_PER_MIN", "10"))
+_hits: dict[str, deque] = defaultdict(deque)
 
 
 # --------------------------
@@ -21,7 +30,7 @@ app = FastAPI(title="Mental Health Triage Chatbot")
 # --------------------------
 # Health Check
 # --------------------------
-@app.get("/")
+@app.get("/health")
 def health():
     return {"status": "ok"}
 
@@ -47,8 +56,8 @@ def load_models():
 # Message Schema
 # --------------------------
 class MessageIn(BaseModel):
-    user_id: str
-    message: str
+    user_id: str = Field(max_length=100)
+    message: str = Field(min_length=1, max_length=4000)
 
 
 # --------------------------
@@ -119,7 +128,7 @@ def triage_recommendation(category: str) -> str:
         "MILD": "https://www.helpguide.org/articles/depression/coping-with-depression.htm",
         "MODERATE": "https://www.apa.org/topics/depression",
         "URGENT": "https://www.nimh.nih.gov/health/topics/depression",
-        "CRISIS": "https://www.opencounseling.com/suicide-hotlines"
+        "CRISIS": "https://findahelpline.com"
     }
 
     texts = {
@@ -130,7 +139,13 @@ def triage_recommendation(category: str) -> str:
         "CRISIS": "Your responses suggest you may be in crisis. Contact crisis support immediately."
     }
 
-    return f"{texts[category]}<br><br><a href='{links[category]}' target='_blank'>Tips to get better</a>"
+    text = f"{texts[category]}<br><br><a href='{links[category]}' target='_blank'>Tips to get better</a>"
+    if category in ("URGENT", "CRISIS"):
+        text += (
+            "<br><br><strong>In the UAE:</strong> emergency 999 (police) or 998 (ambulance); "
+            "mental health support line 800 HOPE (800 4673), Arabic and English."
+        )
+    return text
 
 
 # --------------------------
@@ -171,8 +186,25 @@ def calculate_risk(emotions, text: str):
 # --------------------------
 # API: Message
 # --------------------------
+def _client_ip(request: Request) -> str:
+    # Cloud Run puts the real client first in X-Forwarded-For
+    fwd = request.headers.get("x-forwarded-for", "")
+    return fwd.split(",")[0].strip() or (request.client.host if request.client else "unknown")
+
+
+def _check_rate_limit(ip: str):
+    now = time.monotonic()
+    window = _hits[ip]
+    while window and now - window[0] > 60:
+        window.popleft()
+    if len(window) >= RATE_LIMIT:
+        raise HTTPException(status_code=429, detail="Too many requests, please wait a minute.")
+    window.append(now)
+
+
 @app.post("/message")
-def receive_msg(msg: MessageIn):
+def receive_msg(msg: MessageIn, request: Request):
+    _check_rate_limit(_client_ip(request))
     session_id = str(uuid.uuid4())
     text = msg.message.strip()
 
@@ -200,47 +232,27 @@ def receive_msg(msg: MessageIn):
         "timestamp": datetime.utcnow().isoformat()
     }
 
-    file = "triage_test_results.csv"
-    exists = os.path.isfile(file)
-
-    with open(file, "a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=out.keys())
-        if not exists:
-            writer.writeheader()
-        writer.writerow(out)
+    if STORE_MESSAGES:
+        file = "triage_test_results.csv"
+        exists = os.path.isfile(file)
+        with open(file, "a", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=out.keys())
+            if not exists:
+                writer.writeheader()
+            writer.writerow(out)
 
     return {
         **out,
+        # Emotion breakdown for this request only (was a shared /result_chart read)
+        "emotions": {e["label"]: round(float(e["score"]), 4) for e in emotions},
         "recommendation": triage_recommendation(category)
-    }
-
-
-# --------------------------
-# Heat Bar Endpoint (REAL)
-# --------------------------
-@app.get("/result_chart")
-def result_chart():
-    csv_path = "triage_test_results.csv"
-    if not os.path.exists(csv_path):
-        return {"error": "no_data"}
-
-    df = pd.read_csv(csv_path)
-    last = df.iloc[-1]
-
-    emotions = detect_emotions(last["clean_message"])
-    scores = {e["label"]: float(e["score"]) for e in emotions}
-
-    return {
-        "labels": list(scores.keys()),
-        "values": list(scores.values()),
-        "score": float(last["risk_score"]),
-        "category": last["triage_category"]
     }
 
 
 # --------------------------
 # Index Page
 # --------------------------
+@app.get("/", response_class=HTMLResponse)
 @app.get("/index", response_class=HTMLResponse)
 def index():
     path = os.path.join(os.path.dirname(__file__), "index.html")

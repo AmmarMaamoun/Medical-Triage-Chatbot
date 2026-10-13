@@ -43,6 +43,13 @@
 
 <body class="min-h-screen animated-gradient text-gray-900">
 
+<!-- ================= DEMO BANNER ================= -->
+<div class="fixed top-0 inset-x-0 z-50 bg-gray-900/90 text-white text-xs sm:text-sm px-4 py-2 text-center">
+  Live portfolio demo &middot; not medical advice &middot; nothing you type is stored.
+  In an emergency in the UAE call <strong>999</strong> or <strong>998</strong>;
+  support line <strong>800 HOPE (800 4673)</strong>.
+</div>
+
 <!-- ================= STORY ================= -->
 <section class="min-h-screen flex justify-center pt-28 px-6">
   <div class="max-w-4xl w-full bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl px-10 py-12">
@@ -113,6 +120,10 @@ const closeBtn = document.getElementById("closeChat");
 const sendBtn = document.getElementById("sendBtn");
 const input = document.getElementById("userInput");
 
+// Wake the server (and load the AI models) as soon as the page opens,
+// so the answer is ready by the time the 5 questions are done.
+fetch("/health").catch(() => {});
+
 bubble.onclick = () => chatBox.classList.remove("hidden");
 closeBtn.onclick = () => chatBox.classList.add("hidden");
 
@@ -160,7 +171,9 @@ function askQuestion() {
         if (opt.includes("thought how") || opt.includes("taken steps")) {
           addMessage(
             "🚨 <strong>CRISIS detected.</strong><br><br>" +
-            "Please call <strong>911</strong> or your local emergency number immediately.",
+            "Please get help now. In the UAE call <strong>999</strong> (police) or <strong>998</strong> (ambulance), " +
+            "or the mental health support line <strong>800 HOPE (800 4673)</strong>.<br>" +
+            "Outside the UAE: <a href='https://findahelpline.com' target='_blank' class='underline'>findahelpline.com</a>.",
             "bot"
           );
           input.disabled = true;
@@ -191,16 +204,31 @@ sendBtn.onclick = () => {
 };
 
 async function submit() {
-  const res = await fetch("/message",{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body:JSON.stringify({
-      user_id:"web",
-      message:Object.values(answers).join("\n")
-    })
-  });
+  addMessage("⏳ Analysing your answers with the AI model…");
+  const slow = setTimeout(
+    () => addMessage("Still working: the model may be waking up (up to ~30 seconds on first use)."),
+    6000
+  );
 
-  const data = await res.json();
+  let data;
+  try {
+    const res = await fetch("/message",{
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify({
+        user_id:"web",
+        message:Object.values(answers).join("\n")
+      })
+    });
+    if (res.status === 429) throw new Error("Too many requests. Please wait a minute and try again.");
+    if (!res.ok) throw new Error("The server could not process this right now.");
+    data = await res.json();
+  } catch (err) {
+    clearTimeout(slow);
+    addMessage(`⚠️ ${err.message || "Connection problem."} <button class="underline" onclick="submit()">Retry</button>`);
+    return;
+  }
+  clearTimeout(slow);
   addMessage(`📊 <strong>Severity:</strong> ${data.triage_category}`);
   renderHeatBar(data.risk_score);
   addMessage(`💡 ${data.recommendation}`);

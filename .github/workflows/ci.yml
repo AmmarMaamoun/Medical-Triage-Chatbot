@@ -106,4 +106,6 @@ jobs:
             --project "${{ secrets.GCP_PROJECT_ID }}" \
             --image "$IMAGE:${GITHUB_SHA}" \
             --platform managed --region "$REGION" \
-            --allow-unauthenticated --memory=4Gi --timeout=15m
+            --allow-unauthenticated --memory=4Gi --cpu=2 --timeout=5m \
+            --min-instances=0 --max-instances=2 --cpu-boost \
+            --set-env-vars=STORE_MESSAGES=false,RATE_LIMIT_PER_MIN=10
